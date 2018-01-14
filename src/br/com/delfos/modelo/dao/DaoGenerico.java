@@ -12,30 +12,34 @@ import javax.persistence.EntityManager;
  *
  * @author rafaelgentil
  */
-public class DaoGenerico<T extends EntidadeBase> {
+public class DaoGenerico<Entidade extends EntidadeBase> {
 
     private static EntityManager manager = ConnectionFactory.getEntityManager();
 
-    public T encontrarId(Class<T> clazz, Long id) {
+    public Entidade encontrarId(Class<Entidade> clazz, Long id) {
         return manager.find(clazz, id);
     }
 
-    public void savarOuAtualizar(T obj) {
+    public void salvarOuAtualizar(Entidade obj) {
         try {
             manager.getTransaction().begin();
             if (obj.getId() == null) {
                 manager.persist(obj);
             } else {
-                manager.merge(obj);
+                manager.merge(obj); 
             }
             manager.getTransaction().commit();
+
         } catch (Exception e) {
             manager.getTransaction().rollback();
+            e.printStackTrace();
         }
+        
+//        return obj;
     }
 
-    public void remover(Class<T> clazz, Long id) {
-        T t = encontrarId(clazz, id);
+    public void remover(Class<Entidade> clazz, Long id) {
+        Entidade t = encontrarId(clazz, id);
         try {
             manager.getTransaction().begin();
             manager.remove(t);

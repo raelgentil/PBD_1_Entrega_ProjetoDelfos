@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package br.com.delfos.modelo.entidades;
 
 import br.com.delfos.modelo.dao.EntidadeBase;
@@ -8,30 +13,26 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
 
 /**
  *
  * @author rafaelgentil
- *
  */
 @Entity
-@Table(name = "estado")
-public class Estado implements Serializable, EntidadeBase {
-
+public class Contato implements Serializable, EntidadeBase{
     @Id
-    @SequenceGenerator(name = "seq_estado", sequenceName = "seq_estado_id", allocationSize = 1)
-    @GeneratedValue(generator = "seq_estado", strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(name = "seq_contato", sequenceName = "seq_contato_id", allocationSize = 1)
+    @GeneratedValue(generator = "seq_contato", strategy = GenerationType.SEQUENCE)
     private Long id;
-    @Column(name = "uf", nullable = false, length = 2)
-    private String uf;
-    @Column(name = "descricao", nullable = false, length = 20)
+    @Column(name = "tipo", nullable = false, length = 20)
+    private String tipo;
+    @Column(name = "descricao", nullable = false, length = 255)
     private String descricao;
+    
 
-    public Estado() {
-    }
-
-    @Override
+    /**
+     * @return the id
+     */
     public Long getId() {
         return id;
     }
@@ -44,17 +45,17 @@ public class Estado implements Serializable, EntidadeBase {
     }
 
     /**
-     * @return the uf
+     * @return the tipo
      */
-    public String getUf() {
-        return uf;
+    public String getTipo() {
+        return tipo;
     }
 
     /**
-     * @param uf the uf to set
+     * @param tipo the tipo to set
      */
-    public void setUf(String uf) {
-        this.uf = uf;
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
     /**
@@ -73,10 +74,10 @@ public class Estado implements Serializable, EntidadeBase {
 
     @Override
     public String toString() {
-        return "Estado{" + "id=" + id + ", uf=" + uf + ", descricao=" + descricao + '}';
+        return "Contato{" + "id=" + id + ", tipo=" + tipo + ", descricao=" + descricao + '}';
     }
 
     
-
+    
     
 }
