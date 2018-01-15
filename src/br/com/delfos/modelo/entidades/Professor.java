@@ -62,9 +62,21 @@ public class Professor implements Serializable, EntidadeBase{
 
     
 
+//    @Override
+//    public String toString() {
+////        String contatoss = "";
+////        int i = 1;
+////        for (Object contato : contatos) {
+////            contatoss += "\nContato " + i + "{" + contato.toString() + "}";
+////            i++;
+////        }
+//        return "Professor{" + "id=" + getId() + ", nome=" + getNome() + ", cpf=" + getCpf() + ", matricula=" + getMatricula() + ", login=" + getLogin() + ", senha=" + getSenha() + ", statutsVinculo=" + isStatutsVinculo() + ", cordenador=" + isCordenador() + ", departamento=" + getDepartamento() + ", endereco=" + getEndereco() + "}";
+////        return "Professor{" + "id=" + getId() + ", nome=" + getNome() + ", cpf=" + getCpf() + ", matricula=" + getMatricula() + ", login=" + getLogin() + ", senha=" + getSenha() + ", statutsVinculo=" + isStatutsVinculo() + ", cordenador=" + isCordenador() + ", departamento=" + getDepartamento() + ", endereco=" + getEndereco() + ", contatos=" + contatoss + '}';
+//    }
+
     @Override
     public String toString() {
-        return "Professor{" + "id=" + getId() + ", nome=" + getNome() + ", cpf=" + getCpf() + ", matricula=" + getMatricula() + ", login=" + getLogin() + ", senha=" + getSenha() + ", statutsVinculo=" + isStatutsVinculo() + ", cordenador=" + isCordenador() + ", departamento=" + getDepartamento() + ", endereco=" + getEndereco() + ", contatos=" + getContatos() + '}';
+        return "Professor{" + "id=" + id + ", nome=" + nome + ", cpf=" + cpf + ", matricula=" + matricula + ", login=" + login + ", senha=" + senha + ", statutsVinculo=" + statutsVinculo + ", cordenador=" + cordenador + ", departamento=" + departamento + ", endereco=" + endereco + ", contatos=" + contatos + '}';
     }
 
     /**

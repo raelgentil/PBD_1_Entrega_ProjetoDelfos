@@ -79,7 +79,7 @@ public class TestProf {
 //            prof.setContatos(contatos);
 //            profDAO.salvarOuAtualizar(prof);
             
-            Professor profPeq = profDAO.encontrarId(Professor.class, 1l);
+            Professor profPeq = profDAO.encontrarId(Professor.class, 2l);
              System.out.println("Peguei o \n" + profPeq.toString());
               
          } catch (Exception e) {
