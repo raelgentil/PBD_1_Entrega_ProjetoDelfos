@@ -3,9 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package TestePersistencia;
 
 import br.com.delfos.modelo.dao.DaoGenerico;
-import br.com.delfos.modelo.entidades.Estado;
+import br.com.delfos.modelo.entidades.Aula;
+import br.com.delfos.modelo.entidades.Turma;
+import java.util.Calendar;
 import junit.framework.Assert;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -17,9 +20,9 @@ import org.junit.Test;
  *
  * @author rafaelgentil
  */
-public class TestEstado {
+public class TestAula {
     
-    public TestEstado() {
+    public TestAula() {
     }
     
     @BeforeClass
@@ -46,21 +49,20 @@ public class TestEstado {
          boolean exption = false;
          
          try {
-//             Estado estado = new Estado();
-//             
-//             estado.setUf("PE");
-//             estado.setDescricao("PErnambuco");
              
-//             DaoGenerico estadoDAO = new DaoGenerico();
+             Calendar c = Calendar.getInstance();
+             c.set(2016, 03-1, 20);
              
-//             estadoDAO.salvarOuAtualizar(estado);
-             DaoGenerico<Estado> estadoDAO = new DaoGenerico<>();
-//             estadoDAO.salvarOuAtualizar(estado);
-          
+            DaoGenerico<Turma> turDAO = new DaoGenerico<>();
+            Turma turPesq = turDAO.encontrarId(Turma.class, 1L);
+            
+            DaoGenerico<Aula> aulDAO = new DaoGenerico<>();
+             Aula aula = new Aula("null", true, "Laboratorio", c, turPesq);
+             aulDAO.salvarOuAtualizar(aula);
+             Aula aulPesq = aulDAO.encontrarId(Aula.class, 1L);
+             System.out.println("Peguei o \n" + aulPesq.toString());
+
              
-             Estado estadoPesquisado = estadoDAO.encontrarId( Estado.class, 2L);
-             
-             System.out.println(estadoPesquisado.toString());
          } catch (Exception e) {
              exption = true;
              e.printStackTrace();

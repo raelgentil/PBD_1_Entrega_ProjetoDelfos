@@ -5,7 +5,6 @@
  */
 package br.com.delfos.modelo.entidades;
 
-import br.com.delfos.modelo.dao.EntidadeBase;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -57,40 +56,46 @@ public class Professor implements Serializable, EntidadeBase{
     @JoinTable(name="Professor_contato",
              joinColumns={@JoinColumn(name = "professor_id")},
              inverseJoinColumns={@JoinColumn(name = "contato_id")})
-  
     private List<Contato> contatos;
 
+    private Professor() {
+    }
     
 
-//    @Override
-//    public String toString() {
-////        String contatoss = "";
-////        int i = 1;
-////        for (Object contato : contatos) {
-////            contatoss += "\nContato " + i + "{" + contato.toString() + "}";
-////            i++;
-////        }
-//        return "Professor{" + "id=" + getId() + ", nome=" + getNome() + ", cpf=" + getCpf() + ", matricula=" + getMatricula() + ", login=" + getLogin() + ", senha=" + getSenha() + ", statutsVinculo=" + isStatutsVinculo() + ", cordenador=" + isCordenador() + ", departamento=" + getDepartamento() + ", endereco=" + getEndereco() + "}";
-////        return "Professor{" + "id=" + getId() + ", nome=" + getNome() + ", cpf=" + getCpf() + ", matricula=" + getMatricula() + ", login=" + getLogin() + ", senha=" + getSenha() + ", statutsVinculo=" + isStatutsVinculo() + ", cordenador=" + isCordenador() + ", departamento=" + getDepartamento() + ", endereco=" + getEndereco() + ", contatos=" + contatoss + '}';
-//    }
-
-    @Override
-    public String toString() {
-        return "Professor{" + "id=" + id + ", nome=" + nome + ", cpf=" + cpf + ", matricula=" + matricula + ", login=" + login + ", senha=" + senha + ", statutsVinculo=" + statutsVinculo + ", cordenador=" + cordenador + ", departamento=" + departamento + ", endereco=" + endereco + ", contatos=" + contatos + '}';
+    public Professor(String nome, String cpf, int matricula, String login, String senha, boolean statutsVinculo, boolean cordenador, Departamento departamento, Endereco endereco, List<Contato> contatos) {
+        this.nome = nome;
+        this.cpf = cpf;
+        this.matricula = matricula;
+        this.login = login;
+        this.senha = senha;
+        this.statutsVinculo = statutsVinculo;
+        this.cordenador = cordenador;
+        this.departamento = departamento;
+        this.endereco = endereco;
+        this.contatos = contatos;
     }
 
+    public Professor(Long id, String nome, String cpf, int matricula, String login, String senha, boolean statutsVinculo, boolean cordenador, Departamento departamento, Endereco endereco, List<Contato> contatos) {
+        this.id = id;
+        this.nome = nome;
+        this.cpf = cpf;
+        this.matricula = matricula;
+        this.login = login;
+        this.senha = senha;
+        this.statutsVinculo = statutsVinculo;
+        this.cordenador = cordenador;
+        this.departamento = departamento;
+        this.endereco = endereco;
+        this.contatos = contatos;
+    }
+    
+
+    
     /**
      * @return the id
      */
     public Long getId() {
         return id;
-    }
-
-    /**
-     * @param id the id to set
-     */
-    public void setId(Long id) {
-        this.id = id;
     }
 
     /**
@@ -101,24 +106,10 @@ public class Professor implements Serializable, EntidadeBase{
     }
 
     /**
-     * @param nome the nome to set
-     */
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    /**
      * @return the cpf
      */
     public String getCpf() {
         return cpf;
-    }
-
-    /**
-     * @param cpf the cpf to set
-     */
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
     }
 
     /**
@@ -129,24 +120,10 @@ public class Professor implements Serializable, EntidadeBase{
     }
 
     /**
-     * @param matricula the matricula to set
-     */
-    public void setMatricula(int matricula) {
-        this.matricula = matricula;
-    }
-
-    /**
      * @return the login
      */
     public String getLogin() {
         return login;
-    }
-
-    /**
-     * @param login the login to set
-     */
-    public void setLogin(String login) {
-        this.login = login;
     }
 
     /**
@@ -157,24 +134,10 @@ public class Professor implements Serializable, EntidadeBase{
     }
 
     /**
-     * @param senha the senha to set
-     */
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
-
-    /**
      * @return the statutsVinculo
      */
     public boolean isStatutsVinculo() {
         return statutsVinculo;
-    }
-
-    /**
-     * @param statutsVinculo the statutsVinculo to set
-     */
-    public void setStatutsVinculo(boolean statutsVinculo) {
-        this.statutsVinculo = statutsVinculo;
     }
 
     /**
@@ -185,24 +148,10 @@ public class Professor implements Serializable, EntidadeBase{
     }
 
     /**
-     * @param cordenador the cordenador to set
-     */
-    public void setCordenador(boolean cordenador) {
-        this.cordenador = cordenador;
-    }
-
-    /**
      * @return the departamento
      */
     public Departamento getDepartamento() {
         return departamento;
-    }
-
-    /**
-     * @param departamento the departamento to set
-     */
-    public void setDepartamento(Departamento departamento) {
-        this.departamento = departamento;
     }
 
     /**
@@ -213,27 +162,16 @@ public class Professor implements Serializable, EntidadeBase{
     }
 
     /**
-     * @param endereco the endereco to set
-     */
-    public void setEndereco(Endereco endereco) {
-        this.endereco = endereco;
-    }
-
-    /**
      * @return the contatos
      */
     public List<Contato> getContatos() {
         return contatos;
     }
 
-    /**
-     * @param contatos the contatos to set
-     */
-    public void setContatos(List<Contato> contatos) {
-        this.contatos = contatos;
+    @Override
+    public String toString() {
+        return "Professor{" + "id=" + id + ", nome=" + nome + ", cpf=" + cpf + ", matricula=" + matricula + ", login=" + login + ", senha=" + senha + ", statutsVinculo=" + statutsVinculo + ", cordenador=" + cordenador + ", departamento=" + departamento + ", endereco=" + endereco + ", contatos=" + contatos + '}';
     }
 
-
-    
-    
+   
 }

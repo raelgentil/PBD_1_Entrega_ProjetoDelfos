@@ -5,6 +5,7 @@
  */
 package br.com.delfos.modelo.dao;
 
+import br.com.delfos.modelo.entidades.EntidadeBase;
 import br.com.delfos.modelo.conexao.ConnectionFactory;
 import javax.persistence.EntityManager;
 

@@ -5,9 +5,11 @@
  */
 package br.com.delfos.modelo.entidades;
 
-import br.com.delfos.modelo.dao.EntidadeBase;
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.text.DateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,6 +17,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
@@ -29,23 +33,38 @@ public class Semestre implements Serializable, EntidadeBase{
     private Long id;
     @Column(name = "descricao", nullable = false, length = 20)
     private String descricao;
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "data_inicio", nullable = false)
-    private LocalDate dataInicio;
+    private Calendar dataInicio;
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "data_termino", nullable = false)
-    private LocalDate dataTermino;
+    private Calendar dataTermino;
 
+    private Semestre() {
+    }
+
+    
+
+    public Semestre(String descricao, Calendar dataInicio, Calendar dataTermino) {
+       
+        this.descricao = descricao;
+        this.dataInicio = dataInicio;
+        this.dataTermino = dataTermino;
+    }
+
+    public Semestre(Long id, String descricao, Calendar dataInicio, Calendar dataTermino) {
+        this.id = id;
+        this.descricao = descricao;
+        this.dataInicio = dataInicio;
+        this.dataTermino = dataTermino;
+    }
+
+    
     /**
      * @return the id
      */
     public Long getId() {
         return id;
-    }
-
-    /**
-     * @param id the id to set
-     */
-    public void setId(Long id) {
-        this.id = id;
     }
 
     /**
@@ -56,6 +75,27 @@ public class Semestre implements Serializable, EntidadeBase{
     }
 
     /**
+     * @return the dataInicio
+     */
+    public Calendar getDataInicio() {
+        return dataInicio;
+    }
+
+    /**
+     * @return the dataTermino
+     */
+    public Calendar getDataTermino() {
+        return dataTermino;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    /**
      * @param descricao the descricao to set
      */
     public void setDescricao(String descricao) {
@@ -63,36 +103,28 @@ public class Semestre implements Serializable, EntidadeBase{
     }
 
     /**
-     * @return the dataInicio
-     */
-    public LocalDate getDataInicio() {
-        return dataInicio;
-    }
-
-    /**
      * @param dataInicio the dataInicio to set
      */
-    public void setDataInicio(LocalDate dataInicio) {
+    public void setDataInicio(Calendar dataInicio) {
         this.dataInicio = dataInicio;
-    }
-
-    /**
-     * @return the dataTermino
-     */
-    public LocalDate getDataTermino() {
-        return dataTermino;
     }
 
     /**
      * @param dataTermino the dataTermino to set
      */
-    public void setDataTermino(LocalDate dataTermino) {
+    public void setDataTermino(Calendar dataTermino) {
         this.dataTermino = dataTermino;
     }
 
+    
+    
     @Override
     public String toString() {
-        return "Semestre{" + "id=" + id + ", descricao=" + descricao + ", dataInicio=" + dataInicio + ", dataTermino=" + dataTermino + '}';
+        Locale brasil = new Locale("pt", "BR"); //Retorna do país e a língua
+        Date dataInicioo = dataInicio.getTime();
+        Date dataTerminoo = dataTermino.getTime();
+        DateFormat f2 = DateFormat.getDateInstance(DateFormat.FULL, brasil);
+        return "Semestre{" + "id=" + id + ", descricao=" + descricao + ", dataInicio=" + f2.format(dataInicioo) + ", dataTermino=" + f2.format(dataTerminoo) + '}';
     }
 
     

@@ -5,7 +5,6 @@
  */
 package br.com.delfos.modelo.entidades;
 
-import br.com.delfos.modelo.dao.EntidadeBase;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.CascadeType;
