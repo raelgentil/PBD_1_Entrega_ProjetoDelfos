@@ -5,6 +5,9 @@
  */
 package br.com.delfos.aplicacao;
 
+import br.com.delfos.modelo.dao.DaoGenerico;
+import br.com.delfos.modelo.entidades.Semestre;
+
 /**
  *
  * @author rafaelgentil
@@ -12,7 +15,7 @@ package br.com.delfos.aplicacao;
 public class App {
     public static void main(String[] args) {
            
-     
+         DaoGenerico<Semestre> dg = new DaoGenerico<>();
 
 
        

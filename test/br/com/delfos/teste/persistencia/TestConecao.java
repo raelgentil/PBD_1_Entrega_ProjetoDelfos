@@ -1,13 +1,12 @@
-package TestePersistencia;
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package br.com.delfos.teste.persistencia;
 
 import br.com.delfos.modelo.dao.DaoGenerico;
-import br.com.delfos.modelo.entidades.Estado;
+import br.com.delfos.modelo.entidades.Semestre;
 import junit.framework.Assert;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -19,9 +18,9 @@ import org.junit.Test;
  *
  * @author rafaelgentil
  */
-public class TestEstado {
+public class TestConecao {
     
-    public TestEstado() {
+    public TestConecao() {
     }
     
     @BeforeClass
@@ -45,28 +44,16 @@ public class TestEstado {
     //
      @Test
      public void test() {
-         boolean exption = false;
+         boolean excecao = false;
          
          try {
-//             Estado estado = new Estado();
-//             
-//             estado.setUf("PE");
-//             estado.setDescricao("PErnambuco");
+             DaoGenerico<Semestre> dg = new DaoGenerico<>();
              
-//             DaoGenerico estadoDAO = new DaoGenerico();
-             
-//             estadoDAO.salvarOuAtualizar(estado);
-             DaoGenerico<Estado> estadoDAO = new DaoGenerico<>();
-//             estadoDAO.salvarOuAtualizar(estado);
-          
-             
-             Estado estadoPesquisado = estadoDAO.encontrarId( Estado.class, 2L);
-             
-             System.out.println(estadoPesquisado.toString());
          } catch (Exception e) {
-             exption = true;
+             excecao = true;
              e.printStackTrace();
          }
-         Assert.assertEquals(false, exption);
+         
+         Assert.assertEquals(false, excecao);
      }
 }

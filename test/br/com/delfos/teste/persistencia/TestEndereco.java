@@ -1,4 +1,4 @@
-package TestePersistencia;
+package br.com.delfos.teste.persistencia;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -7,7 +7,8 @@ package TestePersistencia;
  */
 
 import br.com.delfos.modelo.dao.DaoGenerico;
-import br.com.delfos.modelo.entidades.Curso;
+import br.com.delfos.modelo.entidades.Endereco;
+import br.com.delfos.modelo.entidades.Municipio;
 import junit.framework.Assert;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -19,9 +20,9 @@ import org.junit.Test;
  *
  * @author rafaelgentil
  */
-public class TestCurso {
+public class TestEndereco {
     
-    public TestCurso() {
+    public TestEndereco() {
     }
     
     @BeforeClass
@@ -43,24 +44,29 @@ public class TestCurso {
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:
     //
-    @Test
+     @Test
      public void test() {
          boolean exption = false;
          
          try {
-             
-//            DaoGenerico<Departamento> depDAO = new DaoGenerico<>();
-//            Departamento depPeq = depDAO.encontrarId(Departamento.class, 1L);
-//            System.out.println("Peguei o \n" + depPeq.toString());
-            DaoGenerico<Curso> cursoDAO = new DaoGenerico<>();
-////            
-//            Curso curso = new Curso();
-//            curso.setDepartamento(depPeq);
-//            curso.setNome("Matematica");
-//            cursoDAO.salvarOuAtualizar(curso);
 
-             Curso cursoPesq = cursoDAO.encontrarId(Curso.class,1L);
-            System.out.println("Peguei o \n" + cursoPesq.toString());
+             
+             DaoGenerico<Municipio> munDAO = new DaoGenerico<>();
+             Municipio muniPesq = munDAO.encontrarId(Municipio.class, 1l);
+             System.out.println("Peguei o \n" + muniPesq.toString());
+            
+            DaoGenerico<Endereco> endDAO = new DaoGenerico<>();
+            Endereco end = new Endereco();
+            end.setBairro("Centro");
+            end.setCep(022);
+            end.setComplemento("casa");
+            end.setDescricao("Rua JOse");
+            end.setNumero("12B");
+            end.setMunicipio(muniPesq);
+            
+            endDAO.salvarOuAtualizar(end);
+            Endereco endPeq = endDAO.encontrarId(Endereco.class, end.getId());
+            System.out.println("Peguei o \n" + endPeq.toString());
               
          } catch (Exception e) {
              exption = true;

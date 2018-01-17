@@ -1,13 +1,10 @@
-package TestePersistencia;
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package br.com.delfos.teste.persistencia;
 
-import br.com.delfos.modelo.dao.DaoGenerico;
-import br.com.delfos.modelo.entidades.Semestre;
 import junit.framework.Assert;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -19,9 +16,9 @@ import org.junit.Test;
  *
  * @author rafaelgentil
  */
-public class TestSemestre {
+public class TestAula {
     
-    public TestSemestre() {
+    public TestAula() {
     }
     
     @BeforeClass
@@ -48,20 +45,18 @@ public class TestSemestre {
          boolean exption = false;
          
          try {
-            
-            
-            DaoGenerico<Semestre> semestDAO = new DaoGenerico<>();
-//            Calendar c1 = Calendar.getInstance();
-//            c1.set(2016, 01-1, 20, 0, 0, 0);
-//            Calendar c2 = Calendar.getInstance();
-//            c2.set(2016, 06-1, 01, 11, 59, 59);
-//            Semestre s= new Semestre("2016.1", c1, c2);
 //             
-//
-//
-//            semestDAO.salvarOuAtualizar(s);
-            Semestre semestrePesq = semestDAO.encontrarId(Semestre.class, 1L);
-             System.out.println("Peguei o \n" + semestrePesq.toString());
+//             Calendar c = Calendar.getInstance();
+//             c.set(2016, 03-1, 20);
+//             
+//            DaoGenerico<Turma> turDAO = new DaoGenerico<>();
+//            Turma turPesq = turDAO.encontrarId(Turma.class, 1L);
+//            
+//            DaoGenerico<Aula> aulDAO = new DaoGenerico<>();
+//             Aula aula = new Aula("null", true, "Laboratorio", c, turPesq);
+//             aulDAO.salvarOuAtualizar(aula);
+//             Aula aulPesq = aulDAO.encontrarId(Aula.class, 1L);
+//             System.out.println("Peguei o \n" + aulPesq.toString());
 
              
          } catch (Exception e) {

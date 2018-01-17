@@ -1,14 +1,13 @@
+package br.com.delfos.teste.persistencia;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package TestePersistencia;
 
 import br.com.delfos.modelo.dao.DaoGenerico;
-import br.com.delfos.modelo.entidades.Aula;
-import br.com.delfos.modelo.entidades.Turma;
-import java.util.Calendar;
+import br.com.delfos.modelo.entidades.Curso;
 import junit.framework.Assert;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -20,9 +19,9 @@ import org.junit.Test;
  *
  * @author rafaelgentil
  */
-public class TestAula {
+public class TestCurso {
     
-    public TestAula() {
+    public TestCurso() {
     }
     
     @BeforeClass
@@ -44,25 +43,25 @@ public class TestAula {
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:
     //
-     @Test
+    @Test
      public void test() {
          boolean exption = false;
          
          try {
              
-             Calendar c = Calendar.getInstance();
-             c.set(2016, 03-1, 20);
-             
-            DaoGenerico<Turma> turDAO = new DaoGenerico<>();
-            Turma turPesq = turDAO.encontrarId(Turma.class, 1L);
-            
-            DaoGenerico<Aula> aulDAO = new DaoGenerico<>();
-             Aula aula = new Aula("null", true, "Laboratorio", c, turPesq);
-             aulDAO.salvarOuAtualizar(aula);
-             Aula aulPesq = aulDAO.encontrarId(Aula.class, 1L);
-             System.out.println("Peguei o \n" + aulPesq.toString());
+//            DaoGenerico<Departamento> depDAO = new DaoGenerico<>();
+//            Departamento depPeq = depDAO.encontrarId(Departamento.class, 1L);
+//            System.out.println("Peguei o \n" + depPeq.toString());
+            DaoGenerico<Curso> cursoDAO = new DaoGenerico<>();
+////            
+//            Curso curso = new Curso();
+//            curso.setDepartamento(depPeq);
+//            curso.setNome("Matematica");
+//            cursoDAO.salvarOuAtualizar(curso);
 
-             
+             Curso cursoPesq = cursoDAO.encontrarId(Curso.class,1L);
+            System.out.println("Peguei o \n" + cursoPesq.toString());
+              
          } catch (Exception e) {
              exption = true;
              e.printStackTrace();

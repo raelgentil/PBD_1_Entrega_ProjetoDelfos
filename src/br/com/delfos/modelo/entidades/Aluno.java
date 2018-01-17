@@ -47,11 +47,15 @@ public class Aluno implements Serializable, EntidadeBase{
 //    @OneToMany(mappedBy = "pessoa", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
 //    @JoinColumn(name = "contato_id", referencedColumnName = "id")
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinTable(name="Aluno_contato",
+    @JoinTable(name="aluno_contato",
              joinColumns={@JoinColumn(name = "aluno_id")},
              inverseJoinColumns={@JoinColumn(name = "contato_id")})
   
     private List<Contato> contatos;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "aluno_id")
+    List<VinculoAlunoCurso> vinculosAlunoCurso;
+    
 
     
 

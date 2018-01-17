@@ -6,14 +6,17 @@
 package br.com.delfos.modelo.entidades;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
 /**
@@ -34,40 +37,41 @@ public class Turma implements Serializable, EntidadeBase{
     private String nome;
     @Column(name = "horario_aula", nullable = false, length = 50)
     private String horarioAula;
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "semestre_id", referencedColumnName = "id", nullable = false)
-    private Semestre semestre;
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "professor_id", referencedColumnName = "id", nullable = false)
-    private Professor professor;
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "disciplina_id", referencedColumnName = "id", nullable = false)
-    private Disciplina disciplina;
-
-    private Turma() {
-    }
+//    @ManyToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "semestre_id", referencedColumnName = "id", nullable = false)
+//    private Semestre semestre;
+//    @ManyToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "professor_id", referencedColumnName = "id", nullable = false)
+//    private Professor professor;
+//    @ManyToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "disciplina_id", referencedColumnName = "id", nullable = false)
+//    private Disciplina disciplina;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "turma_id")
+    List<Aula> aulas;
     
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "turma_id")
+    List<VinculoAlunoTurma> vinculosAlunoTurma;
+    
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(name="Aluno_",
+             joinColumns={@JoinColumn(name = "vinculo_aluno_turma_id")},
+             inverseJoinColumns={@JoinColumn(name = "observacao_id")})
+    List<Observacao> observacaos;
+   
 
-    public Turma(String codigo, int quantidadeVagas, String nome, String horarioAula, Semestre semestre, Professor professor, Disciplina disciplina) {
+    private Turma() {}
+
+    public Turma(String codigo, int quantidadeVagas, String nome, String horarioAula, List<Aula> aulas) {
+        
         this.codigo = codigo;
         this.quantidadeVagas = quantidadeVagas;
         this.nome = nome;
         this.horarioAula = horarioAula;
-        this.semestre = semestre;
-        this.professor = professor;
-        this.disciplina = disciplina;
+        this.aulas = aulas;
     }
-
-    public Turma(Long id, String codigo, int quantidadeVagas, String nome, String horarioAula, Semestre semestre, Professor professor, Disciplina disciplina) {
-        this.id = id;
-        this.codigo = codigo;
-        this.quantidadeVagas = quantidadeVagas;
-        this.nome = nome;
-        this.horarioAula = horarioAula;
-        this.semestre = semestre;
-        this.professor = professor;
-        this.disciplina = disciplina;
-    }
+ 
 
     /**
      * @return the id
@@ -104,33 +108,14 @@ public class Turma implements Serializable, EntidadeBase{
         return horarioAula;
     }
 
-    /**
-     * @return the semestre
-     */
-    public Semestre getSemestre() {
-        return semestre;
-    }
-
-    /**
-     * @return the professor
-     */
-    public Professor getProfessor() {
-        return professor;
-    }
-
-    /**
-     * @return the disciplina
-     */
-    public Disciplina getDisciplina() {
-        return disciplina;
-    }
-
     @Override
     public String toString() {
-        return "Turma{" + "id=" + id + ", codigo=" + codigo + ", quantidadeVagas=" + quantidadeVagas + ", nome=" + nome + ", horarioAula=" + horarioAula + ", semestre=" + semestre + ", professor=" + professor + ", disciplina=" + disciplina + '}';
+        return "Turma{" + "id=" + id + ", codigo=" + codigo + ", quantidadeVagas=" + quantidadeVagas + ", nome=" + nome + ", horarioAula=" + horarioAula + ", aulas=" + aulas + '}';
     }
+
+
     
+
     
-    
-    
+ 
 }

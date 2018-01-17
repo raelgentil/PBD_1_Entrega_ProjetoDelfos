@@ -37,6 +37,7 @@ public class VinculoAlunoCurso implements Serializable, EntidadeBase{
     @ManyToOne(cascade={CascadeType.ALL})
     @JoinColumn(name = "professor_id", referencedColumnName = "id", nullable = false)
     private Curso curso;
+    
 
     public VinculoAlunoCurso() {
     }

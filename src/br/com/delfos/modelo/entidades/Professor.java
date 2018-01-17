@@ -58,9 +58,7 @@ public class Professor implements Serializable, EntidadeBase{
              inverseJoinColumns={@JoinColumn(name = "contato_id")})
     private List<Contato> contatos;
 
-    private Professor() {
-    }
-    
+    private Professor() {}
 
     public Professor(String nome, String cpf, int matricula, String login, String senha, boolean statutsVinculo, boolean cordenador, Departamento departamento, Endereco endereco, List<Contato> contatos) {
         this.nome = nome;

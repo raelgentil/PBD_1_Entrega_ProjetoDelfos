@@ -1,4 +1,4 @@
-package TestePersistencia;
+package br.com.delfos.teste.persistencia;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -7,7 +7,8 @@ package TestePersistencia;
  */
 
 import br.com.delfos.modelo.dao.DaoGenerico;
-import br.com.delfos.modelo.entidades.Departamento;
+import br.com.delfos.modelo.entidades.Semestre;
+import java.util.Calendar;
 import junit.framework.Assert;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -19,9 +20,9 @@ import org.junit.Test;
  *
  * @author rafaelgentil
  */
-public class TestDepartamento {
+public class TestSemestre {
     
-    public TestDepartamento() {
+    public TestSemestre() {
     }
     
     @BeforeClass
@@ -48,17 +49,22 @@ public class TestDepartamento {
          boolean exption = false;
          
          try {
-//             
-            DaoGenerico<Departamento> depDAO = new DaoGenerico<>();
-            Departamento dep = new Departamento();
-            dep.setNome("Exatas");
             
-            depDAO.salvarOuAtualizar(dep);
             
-            Departamento depPeq = depDAO.encontrarId(Departamento.class, 1L);
-            
-            System.out.println("Peguei o \n" + depPeq.toString());
-              
+            DaoGenerico<Semestre> semestDAO = new DaoGenerico<>();
+            Calendar c1 = Calendar.getInstance();
+            c1.set(2016, 01-1, 20, 0, 0, 0);
+            Calendar c2 = Calendar.getInstance();
+            c2.set(2016, 06-1, 01, 11, 59, 59);
+            Semestre s= new Semestre("2016.1", c1, c2);
+             
+
+
+            semestDAO.salvarOuAtualizar(s);
+            Semestre semestrePesq = semestDAO.encontrarId(Semestre.class, 1L);
+             System.out.println("Peguei o \n" + semestrePesq.toString());
+
+             
          } catch (Exception e) {
              exption = true;
              e.printStackTrace();

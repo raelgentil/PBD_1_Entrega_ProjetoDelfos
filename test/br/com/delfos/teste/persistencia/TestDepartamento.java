@@ -1,4 +1,4 @@
-package TestePersistencia;
+package br.com.delfos.teste.persistencia;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -7,8 +7,7 @@ package TestePersistencia;
  */
 
 import br.com.delfos.modelo.dao.DaoGenerico;
-import br.com.delfos.modelo.entidades.Endereco;
-import br.com.delfos.modelo.entidades.Municipio;
+import br.com.delfos.modelo.entidades.Departamento;
 import junit.framework.Assert;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -20,9 +19,9 @@ import org.junit.Test;
  *
  * @author rafaelgentil
  */
-public class TestEndereco {
+public class TestDepartamento {
     
-    public TestEndereco() {
+    public TestDepartamento() {
     }
     
     @BeforeClass
@@ -49,24 +48,16 @@ public class TestEndereco {
          boolean exption = false;
          
          try {
-
-             
-             DaoGenerico<Municipio> munDAO = new DaoGenerico<>();
-             Municipio muniPesq = munDAO.encontrarId(Municipio.class, 1l);
-             System.out.println("Peguei o \n" + muniPesq.toString());
+//             
+            DaoGenerico<Departamento> depDAO = new DaoGenerico<>();
+            Departamento dep = new Departamento();
+            dep.setNome("Exatas");
             
-            DaoGenerico<Endereco> endDAO = new DaoGenerico<>();
-            Endereco end = new Endereco();
-            end.setBairro("Centro");
-            end.setCep(022);
-            end.setComplemento("casa");
-            end.setDescricao("Rua JOse");
-            end.setNumero("12B");
-            end.setMunicipio(muniPesq);
+            depDAO.salvarOuAtualizar(dep);
             
-            endDAO.salvarOuAtualizar(end);
-            Endereco endPeq = endDAO.encontrarId(Endereco.class, end.getId());
-            System.out.println("Peguei o \n" + endPeq.toString());
+            Departamento depPeq = depDAO.encontrarId(Departamento.class, 1L);
+            
+            System.out.println("Peguei o \n" + depPeq.toString());
               
          } catch (Exception e) {
              exption = true;

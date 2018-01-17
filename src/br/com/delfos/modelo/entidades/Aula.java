@@ -7,14 +7,11 @@ package br.com.delfos.modelo.entidades;
 
 import java.io.Serializable;
 import java.util.Calendar;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -35,33 +32,27 @@ public class Aula implements Serializable, EntidadeBase{
     private boolean status;
     @Column(name = "descricao", nullable = false, length = 255)
     private String descricao;
-    @Temporal(TemporalType.DATE)
-    @Column(name = "data", nullable = false)
-    private Calendar data;
-     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "turma_id", referencedColumnName = "id", nullable = false)
-    private Turma turma;
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "data_hora_inicio", nullable = false)
+    private Calendar dataHoraInicio;
+
+    
+    
+//    @ManyToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "turma_id", referencedColumnName = "id", nullable = false)
+//    private Turma turma;
+    
 
     private Aula() {
     }
 
-    public Aula(String observacao, boolean status, String descricao, Calendar data, Turma turma) {
-
+    public Aula(String observacao, boolean status, String descricao, Calendar dataHoraInicio) {
         this.observacao = observacao;
         this.status = status;
         this.descricao = descricao;
-        this.data = data;
-        this.turma = turma;
+        this.dataHoraInicio = dataHoraInicio;
     }
 
-    public Aula(Long id, String observacao, boolean status, String descricao, Calendar data, Turma turma) {
-        this.id = id;
-        this.observacao = observacao;
-        this.status = status;
-        this.descricao = descricao;
-        this.data = data;
-        this.turma = turma;
-    }
     
     
 
@@ -93,24 +84,12 @@ public class Aula implements Serializable, EntidadeBase{
         return descricao;
     }
 
-    /**
-     * @return the data
-     */
-    public Calendar getData() {
-        return data;
-    }
-
-    /**
-     * @return the turma
-     */
-    public Turma getTurma() {
-        return turma;
-    }
-
     @Override
     public String toString() {
-        return "Aula{" + "id=" + id + ", observacao=" + observacao + ", status=" + status + ", descricao=" + descricao + ", data=" + data + ", turma=" + turma + '}';
+        return "Aula{" + "id=" + id + ", observacao=" + observacao + ", status=" + status + ", descricao=" + descricao + ", dataHoraInicio=" + dataHoraInicio + '}';
     }
+
+
     
     
      

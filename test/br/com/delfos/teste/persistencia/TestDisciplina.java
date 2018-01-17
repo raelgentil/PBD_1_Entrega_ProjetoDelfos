@@ -1,4 +1,4 @@
-package TestePersistencia;
+package br.com.delfos.teste.persistencia;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
